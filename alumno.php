@@ -24,18 +24,19 @@ $alumno = $stmt->fetch();
 </head>
 <body class="container mt-5">
     <h2>Datos del Alumno</h2>
-    <?php if ($alumno): ?>
+
+    <?php if (!$alumno['apellido'] || !$alumno['anio_ingreso'] || !$alumno['carrera'] || !$alumno['fecha_nacimiento']): ?>
+        <div class="alert alert-warning" role="alert">
+            Tus datos están incompletos. Acude con tu profesor para terminar de llenar tus datos personales.
+        </div>
+    <?php else: ?>
         <p>Nombre: <?= $alumno['nombre'] ?></p>
         <p>Apellido: <?= $alumno['apellido'] ?></p>
         <p>Año de Ingreso: <?= $alumno['anio_ingreso'] ?></p>
         <p>Carrera: <?= $alumno['carrera'] ?></p>
         <p>Fecha de Nacimiento: <?= $alumno['fecha_nacimiento'] ?></p>
-    <?php else: ?>
-        <p>Hola alumno <?= $nombre ?>, tus datos están incompletos. Dile a tu profesor que llene tus datos completos.</p>
     <?php endif; ?>
     
     <a href="logout.php" class="btn btn-danger">Cerrar Sesión</a>
-    <a href="registro.php" class="btn btn-info">No tienes cuenta, regístrate</a>
 </body>
 </html>
-
